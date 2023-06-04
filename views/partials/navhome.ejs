@@ -1,0 +1,37 @@
+<header class="mb-1">
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="link" href="/">
+                    <img class="mr-3" src="https://res.cloudinary.com/dweoe7xu1/image/upload/v1684751218/AABU/Main_Logo_Color_Inverted_tvect2.svg" alt="aabuMapLogo">
+                </a>
+                <h5 class="aabu d-inline-block">AABU Interactive Map</h5>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/schedules">Schedules</a>
+                    </li>
+                    <% if(!currentUser) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register">Register</a>
+                    </li>
+                    <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

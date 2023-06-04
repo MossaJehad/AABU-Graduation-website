@@ -1,0 +1,85 @@
+<% layout('layouts/boilerplate')%>
+<link rel="stylesheet" href="/stylesheets/stars.css">
+
+<div class="row">
+    <div class="col-10 offset-1">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Doctor <%=schedule.author.username%> Schedule</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><%=schedule.author.collage%></li>
+                <li class="list-group-item text-muted"><%=schedule.author.department%></li>
+            </ul>
+            <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="text-center">#</th>
+                      <th>8-9</th>
+                      <th>9-10</th>
+                      <th>10-11</th>
+                      <th>11-12</th>
+                      <th>12-1</th>
+                      <th>1-2</th>
+                      <th>2-3</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% const days = [
+                      { name: 'Sun', key: 'sunday' },
+                      { name: 'Mon', key: 'monday' },
+                      { name: 'Tues', key: 'tuesday' },
+                      { name: 'Wed', key: 'wednesday' },
+                      { name: 'Thurs', key: 'thursday' }
+                    ]; %>
+                    <% days.forEach(day => { %>
+                      <tr>
+                        <td class="text-center" name="<%= day.name %>"><%= day.name %></td>
+                        <% for (let i = 0; i < 7; i++) { %>
+                          <td>
+                              <% const dayValue = schedule.days[day.key][i] || '-'; %>
+                              <label class="form-control"><%= dayValue %></label>
+                          </td>
+                        <% } %>
+                      </tr>
+                    <% }); %>
+                  </tbody>
+                </table>
+              </div>
+            <%  if( currentUser && schedule.author.equals(currentUser._id))  {%>
+            <div class="card-body">
+                <a class="card-link btn btn-info" href="/schedules/<%=schedule._id%>/edit">Edit</a>
+                <form class="d-inline" action="/schedules/<%=schedule._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+            <% } %>
+            <div class="card-footer text-muted">
+                Last updated: <%= Date() %>
+            </div>
+        </div>
+        <dialog id="dialog" style="border: 1px solid rgba(0,0,0,.25); border-radius: .25rem; width: 33vw">
+            <form method="dialog" class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Write your message</h5>
+                  <div class="form-floating">
+                    <textarea class="form-control" placeholder="Leave a Message here" id="floatingTextarea2" style="height: 100px"></textarea>
+                    <label for="floatingTextarea2">Message</label>
+                  </div>
+                </div>
+              
+            </form>
+            <div class="m-3">
+              <a href="/schedules/<%=schedule._id%>" type="button" class="btn btn-success" onclick='dialog.close()'>Send The Message</a>
+              <button type="button" class="btn btn-danger" onclick='dialog.close()'>Close onclick</button>
+            </div>
+
+        </dialog>
+        <% if(!(currentUser&&schedule.author.equals(currentUser._id))){%>
+          <button type="button" class="btn btn-primary mb-3" onclick='dialog.showModal()'>Send a Message to the Doctor</button>
+        <% } %>
+    </div>
+</div>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

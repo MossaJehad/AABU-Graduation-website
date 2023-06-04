@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AABU Interactive Map</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+        integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    </head>
+
+<body class="d-flex text-center text-white bg-dark ">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+
+    <%- include('../partials/navhome')%>
+    <main class="container">
+        <%- include('../partials/flash')%>
+
+        <%- body %>
+
+    </main>
+    <%- include('../partials/footerhome')%>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+
+    <script src='/javascripts/validateForms.js'></script>
+    </div>
+    <script>
+
+        const svg = document.getElementById('#map');
+        const eco = document.querySelector('.eco');        
+        eco.addEventListener('click', () => {
+        window.location.href = 'collage/eco'; 
+        });
+        const it = document.querySelector('.it');        
+        it.addEventListener('click', () => {
+        window.location.href = 'collage/it'; 
+        });
+        // Under Development // 
+        
+        const elements = document.querySelectorAll('.eng, .bu, .qu, .sport, .hash, .lang, .shari, .sci, .pres');
+
+            const showAlert = () => {
+            const alertContainer = document.getElementById('alertContainer');
+            const alertHTML = `
+                <div class="alert alert-warning" role="alert">
+                Under development
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                </svg>
+
+                </div>
+            `;
+            alertContainer.innerHTML = alertHTML;
+
+            setTimeout(() => {
+                alertContainer.innerHTML = '';
+            }, 2000);
+            };
+
+            elements.forEach((element) => {
+            element.addEventListener('click', showAlert);
+            });
+    </script>
+    
+</body>
+
+</html>
