@@ -72,6 +72,7 @@ app.get('/collage/eco', async (req, res) => {
 
 app.get('/collage/it', async (req, res) => {
     const users = await User.find({}); 
+    const schedules = await Schedule.find({}); 
     res.render('collage/it', { users, schedules }); 
   });
 
