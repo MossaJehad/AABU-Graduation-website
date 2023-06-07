@@ -1,5 +1,35 @@
 <% layout('layouts/boilerhome')%>
-    
+  <style>
+        .aabu-glowing {
+            text-align: center;
+        }
+        .hide-svg {
+            display: none;
+        }
+    </style>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const headingElement = document.querySelector('.aabu-glowing');
+            const svgElement = document.querySelector('#map');
+
+            function updateHeadingText() {
+                if (window.innerWidth < 768) {
+                    headingElement.textContent = 'Press Schedule since you\'re using phone';
+                    svgElement.classList.add('hide-svg');
+                } else {
+                    headingElement.textContent = 'AABU Interactive Map';
+                    svgElement.classList.remove('hide-svg');
+                }
+            }
+
+            updateHeadingText();
+
+            window.addEventListener('resize', function() {
+                updateHeadingText();
+            });
+        });
+    </script>
+  
 <div id="alertContainer"></div>
     <div class="col-10 p-2">
         <svg id="map" data-name="map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 2005">
@@ -773,8 +803,10 @@
         </g>
         </svg>
     </div>
-        <h1 class="text-shadow text-left ml-auto p-2 display-3 font-weight-bolder aabu-glowing">
+        
+          <h1 class="text-shadow text-left ml-auto p-2 display-3 font-weight-bolder aabu-glowing">
             AABU <br>
             Interactive <br>
             Map
-        </h1>
+          </h1>
+        
