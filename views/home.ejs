@@ -1,6 +1,13 @@
 <% layout('layouts/boilerhome')%>
-    
-<div id="alertContainer"></div>
+    <style>
+        /* Custom styles for responsiveness */
+        @media (max-width: 768px) {
+            .map-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+<div id="alertContainer" class="row map-container">
     <div class="col-10 p-2">
         <svg id="map" data-name="map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 2005">
         <defs>
@@ -773,6 +780,7 @@
         </g>
         </svg>
     </div>
+  </div>
         <h1 class="text-shadow text-left ml-auto p-2 display-3 font-weight-bolder aabu-glowing">
             AABU <br>
             Interactive <br>
