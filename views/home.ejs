@@ -1,8 +1,5 @@
 <% layout('layouts/boilerhome')%>
   <style>
-        .aabu-glowing {
-            text-align: center;
-        }
         .hide-svg {
             display: none;
         }
@@ -16,9 +13,12 @@
                 if (window.innerWidth < 768) {
                     headingElement.textContent = 'Press Schedule since you\'re using phone';
                     svgElement.classList.add('hide-svg');
+                  headingElement.classList.remove('hide-svg');
+                    
                 } else {
                     headingElement.textContent = 'AABU Interactive Map';
                     svgElement.classList.remove('hide-svg');
+                    headingElement.classList.add('hide-svg');
                 }
             }
 
@@ -803,10 +803,10 @@
         </g>
         </svg>
     </div>
-        
+        <div class="aabuTextDiv col-2">
           <h1 class="text-shadow text-left ml-auto p-2 display-3 font-weight-bolder aabu-glowing">
-            AABU <br>
-            Interactive <br>
+            AABU 
+            Interactive 
             Map
           </h1>
-        
+        </div>
